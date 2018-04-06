@@ -1,2 +1,7 @@
 # Jeu-en-2T
-Y a rien a lire TKT bro
+Rogue like
+
+Multi Classes (Pas de GMA de merde , on verra des classes du turfu du lore du turfu aussi)
+
+La boule magique !
+

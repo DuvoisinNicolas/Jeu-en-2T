@@ -13,10 +13,8 @@ namespace gameTools
     const char wall = '#';
     const char emptySpace = ' ';
 
-    bool isAnEdge (CLittleUInt x, CLittleUInt y, CLittleUInt maxSize)
-    {
-        return ((y == 0) || (x == 0) || (y == maxSize - 1) || (x == maxSize - 1));
-    }
+    bool isAnEdge (CLittleUInt x, CLittleUInt y, CLittleUInt maxSize);
+
 
     class Room
     {

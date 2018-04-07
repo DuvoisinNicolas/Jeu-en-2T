@@ -11,7 +11,13 @@ Room::Room (CLittleUInt wallSize, CLittleUInt nbDoors /*= KminNbDoor*/, CLittleU
     Room::myNbDoors = nbDoors;
     Room::myNbWall = nbWalls;
 }//Room
-Room::display() const
+
+bool gameTools::isAnEdge (CLittleUInt x, CLittleUInt y, CLittleUInt maxSize)
+{
+    return ((y == 0) || (x == 0) || (y == maxSize - 1) || (x == maxSize - 1));
+}//isAnEdge
+
+void Room::display() const
 {
     C2DMap RoomToBuild;
 

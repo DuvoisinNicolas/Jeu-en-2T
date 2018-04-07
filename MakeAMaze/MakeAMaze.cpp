@@ -5,7 +5,7 @@
 using namespace std;
 using namespace gameTools;
 
-Room::Room (CLittleUInt wallSize, CLittleUInt nbDoors = KminNbDoor, CLittleUInt nbWalls = KminNbWall)
+Room::Room (CLittleUInt wallSize, CLittleUInt nbDoors /*= KminNbDoor*/, CLittleUInt nbWalls /*= KminNbWall*/)
 {
     Room::myWallSize = wallSize;
     Room::myNbDoors = nbDoors;

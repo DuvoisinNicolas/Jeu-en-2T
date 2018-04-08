@@ -5,22 +5,23 @@
 
 typedef unsigned short CLittleUInt;
 typedef std::vector<std::vector<char>> C2DMap;
+typedef std::vector<char> CMapLine;
 
 namespace gameTools
 {
     const CLittleUInt KminNbDoor = 2;
     const CLittleUInt KminNbWall = 4;
-    const char wall = '#';
-    const char emptySpace = ' ';
+    const char KWall = '#';
+    const char KEmptySpace = ' ';
 
     bool isAnEdge (CLittleUInt x, CLittleUInt y, CLittleUInt maxSize);
-
 
     class Room
     {
         CLittleUInt myNbWall;
         CLittleUInt myWallSize;
         CLittleUInt myNbDoors;
+        C2DMap myRoom;
 
         public :
 

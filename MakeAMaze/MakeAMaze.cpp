@@ -10,6 +10,14 @@ Room::Room (CLittleUInt wallSize, CLittleUInt nbDoors /*= KminNbDoor*/, CLittleU
     Room::myWallSize = wallSize;
     Room::myNbDoors = nbDoors;
     Room::myNbWall = nbWalls;
+
+    for (CLittleUInt y (0); y < Room::myWallSize; ++y)
+    {
+        for (CLittleUInt x (0); x < Room::myWallSize; ++x)
+        {
+            Room::myRoom[y][x] = (isAnEdge (x, y, Room::myWallSize)) ? KWall : KEmptySpace;
+        }
+    }
 }//Room
 
 bool gameTools::isAnEdge (CLittleUInt x, CLittleUInt y, CLittleUInt maxSize)
@@ -19,14 +27,13 @@ bool gameTools::isAnEdge (CLittleUInt x, CLittleUInt y, CLittleUInt maxSize)
 
 void Room::display() const
 {
-    C2DMap RoomToBuild;
-
-    for (CLittleUInt y (0); y < Room::myWallSize; ++y)
+    for (CMapLine line : Room::myRoom)
     {
-        for (CLittleUInt x (0); x < Room::myWallSize; ++x)
+        for (char cell : line)
         {
-            RoomToBuild[y][x] = (isAnEdge (x, y, Room::myWallSize)) ? wall : emptySpace;
+            cout << cell;
         }
+        cout << endl;
     }
 }//display
 

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <iomanip>
 #include "MakeAMaze.h"
 
 using namespace std;
@@ -11,11 +12,14 @@ Room::Room (CLittleUInt wallSize, CLittleUInt nbDoors /*= KminNbDoor*/, CLittleU
     Room::myNbDoors = nbDoors;
     Room::myNbWall = nbWalls;
 
+    CMapLine aLine;
+
     for (CLittleUInt y (0); y < Room::myWallSize; ++y)
     {
+        Room::myRoom.push_back(aLine);
         for (CLittleUInt x (0); x < Room::myWallSize; ++x)
         {
-            Room::myRoom[y][x] = (isAnEdge (x, y, Room::myWallSize)) ? KWall : KEmptySpace;
+            Room::myRoom[y].push_back((isAnEdge (x, y, Room::myWallSize)) ? KWall : KEmptySpace);
         }
     }
 }//Room
@@ -31,7 +35,7 @@ void Room::display() const
     {
         for (char cell : line)
         {
-            cout << cell;
+            cout << setw(2) << cell;
         }
         cout << endl;
     }

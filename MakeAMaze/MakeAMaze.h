@@ -4,8 +4,8 @@
 #include <vector>
 
 typedef unsigned short CLittleUInt;
-typedef std::vector<std::vector<char>> C2DMap;
 typedef std::vector<char> CMapLine;
+typedef std::vector<CMapLine> C2DMap;
 
 namespace gameTools
 {

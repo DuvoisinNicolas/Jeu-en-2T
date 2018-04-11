@@ -11,7 +11,7 @@ Room::Room (CLittleUInt wallSize, CLittleUInt nbDoors /*= KminNbDoor*/)
     Room::myWallSize = wallSize;
     Room::myNbDoors = nbDoors;
 
-    CMapLine aLine;
+    CRoomLine aLine;
 
     for (CLittleUInt y (0); y < Room::myWallSize; ++y)
     {
@@ -30,7 +30,7 @@ bool gameTools::isAnEdge (CLittleUInt x, CLittleUInt y, CLittleUInt maxSize)
 
 void Room::display() const
 {
-    for (CMapLine line : Room::myRoom)
+    for (CRoomLine line : Room::myRoom)
     {
         for (char cell : line)
         {

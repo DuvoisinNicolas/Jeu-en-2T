@@ -4,8 +4,9 @@
 #include <vector>
 
 typedef unsigned short CLittleUInt;
-typedef std::vector<char> CMapLine;     // a line
-typedef std::vector<CMapLine> C2DMap;   // a matrix
+typedef std::vector<char> CRoomLine;     // a line
+typedef std::vector<CRoomLine> CRoomMap;   // a matrix
+
 
 namespace gameTools          // Contains game tools
 {
@@ -21,7 +22,7 @@ namespace gameTools          // Contains game tools
     {
         CLittleUInt myWallSize;
         CLittleUInt myNbDoors;
-        C2DMap myRoom;
+        CRoomMap myRoom;
 
         public :
 
@@ -30,6 +31,20 @@ namespace gameTools          // Contains game tools
 
 
     };//Room
+
+    typedef std::vector<Room> CStageLine; //dunno how to do differently: need a fix
+    typedef std::vector<CRoomLine> CStageMap; // same as above
+
+    class Stage
+    {
+        CLittleUInt myStageSize;
+        CStageMap myStage;
+
+        public:
+
+        Stage();
+    };//Stage
+
 }//gameTools
 
 #endif // MAKEAMAZE_H_INCLUDED

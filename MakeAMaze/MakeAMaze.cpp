@@ -38,5 +38,21 @@ void Room::display() const
         }
         cout << endl;
     }
-}//display
+}//Room::display
 
+Stage::Stage (CLittleUInt stageSize)
+{
+    Stage::myStageSize = stageSize;
+
+    CStageLine aLine;
+
+    for (CLittleUInt y (0); y < stageSize; ++y)
+    {
+        myStage.push_back(aLine);
+        for (CLittleUInt x (0); x < stageSize; ++x)
+        {
+            Room aRoom;
+            aLine.push_back(aRoom);
+        }
+    }
+}

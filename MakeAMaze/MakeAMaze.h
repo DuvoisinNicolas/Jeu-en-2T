@@ -42,7 +42,8 @@ namespace gameTools          // Contains game tools
 
         public:
 
-        Stage();
+        Stage(CLittleUInt stageSize);
+
     };//Stage
 
 }//gameTools

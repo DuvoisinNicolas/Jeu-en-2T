@@ -6,7 +6,7 @@ using namespace gameTools;
 
 int main()
 {
-    Room aRandomRoom (14);
+    Room aRandomRoom ;
     aRandomRoom.display();
     return 0;
 }//test

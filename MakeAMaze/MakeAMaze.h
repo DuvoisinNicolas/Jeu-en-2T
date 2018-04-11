@@ -4,29 +4,29 @@
 #include <vector>
 
 typedef unsigned short CLittleUInt;
-typedef std::vector<char> CMapLine;
-typedef std::vector<CMapLine> C2DMap;
+typedef std::vector<char> CMapLine;     // a line
+typedef std::vector<CMapLine> C2DMap;   // a matrix
 
-namespace gameTools
+namespace gameTools          // Contains game tools
 {
-    const CLittleUInt KminNbDoor = 2;
-    const CLittleUInt KminNbWall = 4;
-    const char KWall = '#';
-    const char KEmptySpace = ' ';
+    const CLittleUInt KminNbDoor = 1;   // Min doors of a room
+    const CLittleUInt KWallSize = 15;   // Size of a room
 
-    bool isAnEdge (CLittleUInt x, CLittleUInt y, CLittleUInt maxSize);
+    const char KWall = '#' ;            // Wall cell
+    const char KEmptySpace = ' ';       // Empty cell
 
-    class Room
+    bool isAnEdge (CLittleUInt x, CLittleUInt y, CLittleUInt maxSize);  // function testing if there's a border on a cell
+
+    class Room      // class containing a room
     {
-        CLittleUInt myNbWall;
         CLittleUInt myWallSize;
         CLittleUInt myNbDoors;
         C2DMap myRoom;
 
         public :
 
-        Room (CLittleUInt wallSize, CLittleUInt nbDoors = KminNbDoor, CLittleUInt nbWalls = KminNbWall);
-        void display () const;
+        Room (CLittleUInt wallSize = KWallSize, CLittleUInt nbDoors = KminNbDoor);  // constructor building a room
+        void display () const;  // displays the room
 
 
     };//Room

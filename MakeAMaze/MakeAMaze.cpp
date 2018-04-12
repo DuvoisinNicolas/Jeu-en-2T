@@ -23,7 +23,7 @@ Room::Room (CLittleUInt wallSize, CLittleUInt nbDoors /*= KminNbDoor*/)
     }
 }//Room
 
-bool gameTools::isAnEdge (CLittleUInt x, CLittleUInt y, CLittleUInt maxSize)
+bool gameTools::isAnEdge (const CLittleUInt & x, const CLittleUInt & y, const CLittleUInt & maxSize)
 {
     return ((y == 0) || (x == 0) || (y == maxSize - 1) || (x == maxSize - 1));
 }//isAnEdge
@@ -39,6 +39,7 @@ void Room::display() const
         cout << endl;
     }
 }//Room::display
+
 
 Stage::Stage (CLittleUInt stageSize)
 {
@@ -56,3 +57,20 @@ Stage::Stage (CLittleUInt stageSize)
         }
     }
 }
+
+void Stage::display() const
+{
+    for (CStageLine aLine : Stage::myStage)
+    {
+        for (Room aRoom : aLine)
+        {
+            aRoom.display();
+        }
+    }
+}
+
+CStageMap Stage::getStage() const
+{
+    return myStage;
+}
+

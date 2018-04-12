@@ -16,7 +16,7 @@ namespace gameTools          // Contains game tools
     const char KWall = '#' ;            // Wall cell
     const char KEmptySpace = ' ';       // Empty cell
 
-    bool isAnEdge (CLittleUInt x, CLittleUInt y, CLittleUInt maxSize);  // function testing if there's a border on a cell
+    bool isAnEdge (const CLittleUInt & x, const CLittleUInt & y, const CLittleUInt & maxSize);  // function testing if there's a border on a cell
 
     class Room      // class containing a room
     {
@@ -33,7 +33,7 @@ namespace gameTools          // Contains game tools
     };//Room
 
     typedef std::vector<Room> CStageLine; //dunno how to do differently: need a fix
-    typedef std::vector<CRoomLine> CStageMap; // same as above
+    typedef std::vector<CStageLine> CStageMap; // same as above
 
     class Stage
     {
@@ -42,7 +42,9 @@ namespace gameTools          // Contains game tools
 
         public:
 
-        Stage(CLittleUInt stageSize);
+        Stage (CLittleUInt stageSize);
+        void display  () const;
+        CStageMap getStage () const;
 
     };//Stage
 

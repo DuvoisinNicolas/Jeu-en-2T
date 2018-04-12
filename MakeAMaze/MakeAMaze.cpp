@@ -6,10 +6,14 @@
 using namespace std;
 using namespace gameTools;
 
-Room::Room (CLittleUInt wallSize, CLittleUInt nbDoors /*= KminNbDoor*/)
+Room::Room (const std::vector<CLittleUInt> & doorPositions, const CLittleUInt & wallSize/* = KWallSize*/, const CLittleUInt & nbDoors/* = KminNbDoor*/)
 {
+
     Room::myWallSize = wallSize;
     Room::myNbDoors = nbDoors;
+
+    vector<bool> myPos;
+    gameTools::tellMeTheGoodWall(doorPositions, myPos);
 
     CRoomLine aLine;
 
@@ -18,15 +22,40 @@ Room::Room (CLittleUInt wallSize, CLittleUInt nbDoors /*= KminNbDoor*/)
         Room::myRoom.push_back(aLine);
         for (CLittleUInt x (0); x < Room::myWallSize; ++x)
         {
-            Room::myRoom[y].push_back((isAnEdge (x, y, Room::myWallSize)) ? KWall : KEmptySpace);
+            if (gameTools::isAnEdge (x, y, Room::myWallSize))
+                for (bool pos : myPos)
+                    Room::myRoom[y].push_back((pos && gameTools::isTheMiddleOfAWall(x, y, myWallSize)) ? KEmptySpace : KWall);
+            else
+                Room::myRoom[y].push_back(KEmptySpace);
         }
     }
 }//Room
 
-bool gameTools::isAnEdge (const CLittleUInt & x, const CLittleUInt & y, const CLittleUInt & maxSize)
+bool isAnEdge (const CLittleUInt & x, const CLittleUInt & y, const CLittleUInt & maxSize)
 {
     return ((y == 0) || (x == 0) || (y == maxSize - 1) || (x == maxSize - 1));
 }//isAnEdge
+
+
+bool isTheMiddleOfAWall(const CLittleUInt & x, const CLittleUInt & y, const CLittleUInt maxSize)
+{
+    if (maxSize%2 == 1)
+    {
+        return ((x /2) == (maxSize/2)) || ((y/2) == (maxSize/2));
+    }
+    else
+    {
+        return ((x /2) == ((maxSize/2)+1)) || ((y/2) == ((maxSize/2)+1));
+    }
+}//isTheMiddleOfAWall
+
+void tellMeTheGoodWall(vector<CLittleUInt> listOfWall, vector<bool> tableOfTruth)
+{
+    for (CLittleUInt i (0); i < listOfWall.size(); ++i)
+    {
+        tableOfTruth.push_back((listOfWall[i] == (i + 1)) ? true : false);
+    }
+}//tellMeTheGoodWall
 
 void Room::display() const
 {
@@ -52,11 +81,11 @@ Stage::Stage (CLittleUInt stageSize)
         myStage.push_back(aLine);
         for (CLittleUInt x (0); x < stageSize; ++x)
         {
-            Room aRoom;
+            Room aRoom ({1,2});
             aLine.push_back(aRoom);
         }
     }
-}
+}//Stage
 
 void Stage::display() const
 {
@@ -66,11 +95,13 @@ void Stage::display() const
         {
             aRoom.display();
         }
+       // cout << endl;
     }
-}
+}//Stage::display
 
 CStageMap Stage::getStage() const
 {
     return myStage;
-}
+}//Stage::getStage
+
 

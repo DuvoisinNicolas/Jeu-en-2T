@@ -8,7 +8,7 @@ int main()
 {
     //Room aRandomRoom ;
     //aRandomRoom.display();
-    Stage aRandomStage (5);
-    aRandomStage.display();
+    //Stage aRandomStage (5);
+    //aRandomStage.display();
     return 0;
 }//test

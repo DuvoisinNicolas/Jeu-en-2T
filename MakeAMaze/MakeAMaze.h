@@ -17,16 +17,19 @@ namespace gameTools          // Contains game tools
     const char KEmptySpace = ' ';       // Empty cell
 
     bool isAnEdge (const CLittleUInt & x, const CLittleUInt & y, const CLittleUInt & maxSize);  // function testing if there's a border on a cell
+    bool isTheMiddleOfAWall (const CLittleUInt & x, const CLittleUInt & y, const CLittleUInt maxSize);
+    void tellMeTheGoodWall (std::vector<CLittleUInt> listOfWall, std::vector<bool> tableOfTruth);
 
     class Room      // class containing a room
     {
         CLittleUInt myWallSize;
         CLittleUInt myNbDoors;
+        std::vector <CLittleUInt> myDoorPositions;
         CRoomMap myRoom;
 
         public :
 
-        Room (CLittleUInt wallSize = KWallSize, CLittleUInt nbDoors = KminNbDoor);  // constructor building a room
+        Room (const std::vector<CLittleUInt> & doorPositions, const CLittleUInt & wallSize = KWallSize, const CLittleUInt & nbDoors = KminNbDoor);  // constructor building a room
         void display () const;  // displays the room
 
 

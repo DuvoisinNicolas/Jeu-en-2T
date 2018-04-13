@@ -4,7 +4,7 @@
 #include <vector>
 
 typedef unsigned short CLittleUInt;
-typedef std::vector<char> CRoomLine;     // a line
+typedef std::vector<char> CRoomLine;       // a line
 typedef std::vector<CRoomLine> CRoomMap;   // a matrix
 
 
@@ -18,18 +18,17 @@ namespace gameTools          // Contains game tools
 
     bool isAnEdge (const CLittleUInt & x, const CLittleUInt & y, const CLittleUInt & maxSize);  // function testing if there's a border on a cell
     bool isTheMiddleOfAWall (const CLittleUInt & x, const CLittleUInt & y, const CLittleUInt maxSize);
-    void tellMeTheGoodWall (std::vector<CLittleUInt> listOfWall, std::vector<bool> tableOfTruth);
 
     class Room      // class containing a room
     {
-        CLittleUInt myWallSize;
+        CLittleUInt myWallSize = KWallSize;
         CLittleUInt myNbDoors;
         std::vector <CLittleUInt> myDoorPositions;
         CRoomMap myRoom;
 
         public :
 
-        Room (const std::vector<CLittleUInt> & doorPositions, const CLittleUInt & wallSize = KWallSize, const CLittleUInt & nbDoors = KminNbDoor);  // constructor building a room
+        Room (const std::vector<bool> & doorPositions);  // constructor building a room
         void display () const;  // displays the room
 
 

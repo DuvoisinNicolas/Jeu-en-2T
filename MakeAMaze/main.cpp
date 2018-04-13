@@ -6,7 +6,7 @@ using namespace gameTools;
 
 int main()
 {
-    Room aRandomRoom ({2,4}) ;
+    Room aRandomRoom ({false,true,false,true}) ;
     aRandomRoom.display();
     //Stage aRandomStage (5);
     //aRandomStage.display();

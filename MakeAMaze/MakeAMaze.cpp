@@ -6,14 +6,8 @@
 using namespace std;
 using namespace gameTools;
 
-Room::Room (const std::vector<CLittleUInt> & doorPositions, const CLittleUInt & wallSize/* = KWallSize*/, const CLittleUInt & nbDoors/* = KminNbDoor*/)
+Room::Room (const std::vector<bool> & doorPositions)
 {
-
-    Room::myWallSize = wallSize;
-    Room::myNbDoors = nbDoors;
-
-    vector<bool> myPos;
-    tellMeTheGoodWall(doorPositions, myPos);
 
     CRoomLine aLine;
     CLittleUInt nbPos (0);
@@ -25,7 +19,8 @@ Room::Room (const std::vector<CLittleUInt> & doorPositions, const CLittleUInt & 
         {
             if (isAnEdge (x, y, Room::myWallSize))
             {
-                Room::myRoom[y].push_back((myPos[nbPos%4] && isTheMiddleOfAWall(x, y, myWallSize)) ? KEmptySpace : KWall);
+
+                Room::myRoom[y].push_back((doorPositions[nbPos] && isTheMiddleOfAWall(x, y, myWallSize)) ? KEmptySpace : KWall);
                 ++nbPos;
             }
             else
@@ -48,19 +43,11 @@ bool gameTools::isTheMiddleOfAWall(const CLittleUInt & x, const CLittleUInt & y,
     {
         return ((x /2) == (maxSize/2)) || ((y/2) == (maxSize/2));
     }
-    else
-    {
-        return ((x /2) == ((maxSize/2)+1)) || ((y/2) == ((maxSize/2)+1));
-    }
+    return false;
+
 }//isTheMiddleOfAWall
 
-void gameTools::tellMeTheGoodWall(vector<CLittleUInt> listOfWall, vector<bool> tableOfTruth)
-{
-    for (CLittleUInt i (0); i < listOfWall.size(); ++i)
-    {
-        tableOfTruth.push_back((listOfWall[i] == (i + 1)) ? true : false);
-    }
-}//tellMeTheGoodWall
+
 
 void Room::display() const
 {
@@ -86,7 +73,7 @@ Stage::Stage (CLittleUInt stageSize)
         myStage.push_back(aLine);
         for (CLittleUInt x (0); x < stageSize; ++x)
         {
-            Room aRoom ({1,2});
+            Room aRoom ({true,true,false,false});
             aLine.push_back(aRoom);
         }
     }

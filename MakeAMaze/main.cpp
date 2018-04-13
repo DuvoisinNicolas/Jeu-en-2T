@@ -6,8 +6,8 @@ using namespace gameTools;
 
 int main()
 {
-    //Room aRandomRoom ;
-    //aRandomRoom.display();
+    Room aRandomRoom ({2,4}) ;
+    aRandomRoom.display();
     //Stage aRandomStage (5);
     //aRandomStage.display();
     return 0;

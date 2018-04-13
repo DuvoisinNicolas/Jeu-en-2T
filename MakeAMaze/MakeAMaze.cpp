@@ -13,31 +13,36 @@ Room::Room (const std::vector<CLittleUInt> & doorPositions, const CLittleUInt & 
     Room::myNbDoors = nbDoors;
 
     vector<bool> myPos;
-    gameTools::tellMeTheGoodWall(doorPositions, myPos);
+    tellMeTheGoodWall(doorPositions, myPos);
 
     CRoomLine aLine;
+    CLittleUInt nbPos (0);
 
     for (CLittleUInt y (0); y < Room::myWallSize; ++y)
     {
         Room::myRoom.push_back(aLine);
         for (CLittleUInt x (0); x < Room::myWallSize; ++x)
         {
-            if (gameTools::isAnEdge (x, y, Room::myWallSize))
-                for (bool pos : myPos)
-                    Room::myRoom[y].push_back((pos && gameTools::isTheMiddleOfAWall(x, y, myWallSize)) ? KEmptySpace : KWall);
+            if (isAnEdge (x, y, Room::myWallSize))
+            {
+                Room::myRoom[y].push_back((myPos[nbPos%4] && isTheMiddleOfAWall(x, y, myWallSize)) ? KEmptySpace : KWall);
+                ++nbPos;
+            }
             else
+            {
                 Room::myRoom[y].push_back(KEmptySpace);
+            }
         }
     }
 }//Room
 
-bool isAnEdge (const CLittleUInt & x, const CLittleUInt & y, const CLittleUInt & maxSize)
+bool gameTools::isAnEdge (const CLittleUInt & x, const CLittleUInt & y, const CLittleUInt & maxSize)
 {
     return ((y == 0) || (x == 0) || (y == maxSize - 1) || (x == maxSize - 1));
 }//isAnEdge
 
 
-bool isTheMiddleOfAWall(const CLittleUInt & x, const CLittleUInt & y, const CLittleUInt maxSize)
+bool gameTools::isTheMiddleOfAWall(const CLittleUInt & x, const CLittleUInt & y, const CLittleUInt maxSize)
 {
     if (maxSize%2 == 1)
     {
@@ -49,7 +54,7 @@ bool isTheMiddleOfAWall(const CLittleUInt & x, const CLittleUInt & y, const CLit
     }
 }//isTheMiddleOfAWall
 
-void tellMeTheGoodWall(vector<CLittleUInt> listOfWall, vector<bool> tableOfTruth)
+void gameTools::tellMeTheGoodWall(vector<CLittleUInt> listOfWall, vector<bool> tableOfTruth)
 {
     for (CLittleUInt i (0); i < listOfWall.size(); ++i)
     {
